@@ -1,0 +1,395 @@
+/* CSS Custom Properties */
+:root {
+    --primary-bg: 220 13% 18%; /* #2D3748 */
+    --secondary-bg: 220 13% 22%; /* #374151 */
+    --display-bg: 220 13% 15%; /* #1F2937 */
+    --text-primary: 0 0% 100%; /* #FFFFFF */
+    --text-secondary: 220 9% 75%; /* #CBD5E0 */
+    --accent-blue: 217 91% 60%; /* #3B82F6 */
+    --accent-green: 142 76% 36%; /* #10B981 */
+    --accent-orange: 25 95% 53%; /* #F97316 */
+    --accent-red: 0 84% 60%; /* #EF4444 */
+    --border-color: 220 13% 35%; /* #4A5568 */
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --border-radius: 8px;
+    --transition: all 0.2s ease-in-out;
+}
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, hsl(var(--primary-bg)), hsl(var(--secondary-bg)));
+    color: hsl(var(--text-primary));
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+/* Calculator Container */
+.calculator-container {
+    width: 100%;
+    max-width: 480px;
+    position: relative;
+}
+
+.calculator {
+    background: hsl(var(--secondary-bg));
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    padding: 1.5rem;
+    border: 1px solid hsl(var(--border-color));
+}
+
+/* Display Section */
+.display-section {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.display {
+    background: hsl(var(--display-bg));
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    text-align: right;
+    border: 1px solid hsl(var(--border-color));
+    min-height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.previous-operand {
+    font-size: 1rem;
+    color: hsl(var(--text-secondary));
+    min-height: 1.5rem;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.current-operand {
+    font-size: 2rem;
+    font-weight: 600;
+    color: hsl(var(--text-primary));
+    min-height: 2.5rem;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.memory-indicator {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    font-size: 0.75rem;
+    color: hsl(var(--accent-green));
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.memory-indicator.active {
+    opacity: 1;
+}
+
+/* History Panel */
+.history-panel {
+    position: absolute;
+    top: 0;
+    right: 100%;
+    width: 300px;
+    max-height: 400px;
+    background: hsl(var(--secondary-bg));
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    border: 1px solid hsl(var(--border-color));
+    transform: translateX(-1rem);
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+    z-index: 10;
+}
+
+.history-panel.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-1rem);
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid hsl(var(--border-color));
+}
+
+.history-header h3 {
+    font-size: 1.1rem;
+    color: hsl(var(--text-primary));
+}
+
+.clear-history-btn {
+    background: hsl(var(--accent-red));
+    color: hsl(var(--text-primary));
+    border: none;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.clear-history-btn:hover {
+    background: hsl(var(--accent-red) / 0.8);
+}
+
+.history-list {
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 0.5rem;
+}
+
+.history-item {
+    padding: 0.75rem;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    transition: var(--transition);
+    border-left: 3px solid transparent;
+}
+
+.history-item:hover {
+    background: hsl(var(--primary-bg));
+    border-left-color: hsl(var(--accent-blue));
+}
+
+.history-expression {
+    font-size: 0.9rem;
+    color: hsl(var(--text-secondary));
+    margin-bottom: 0.25rem;
+}
+
+.history-result {
+    font-size: 1rem;
+    color: hsl(var(--text-primary));
+    font-weight: 600;
+}
+
+.no-history {
+    text-align: center;
+    color: hsl(var(--text-secondary));
+    padding: 2rem;
+    font-style: italic;
+}
+
+/* Button Grid */
+.button-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.75rem;
+}
+
+.btn {
+    background: hsl(var(--secondary-bg));
+    border: 1px solid hsl(var(--border-color));
+    border-radius: var(--border-radius);
+    color: hsl(var(--text-primary));
+    font-size: 1.1rem;
+    font-weight: 500;
+    height: 50px;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow);
+}
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Button Variants */
+.btn.number {
+    background: hsl(var(--primary-bg));
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.btn.number:hover {
+    background: hsl(var(--primary-bg) / 0.8);
+}
+
+.btn.operator {
+    background: hsl(var(--accent-blue));
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.btn.operator:hover {
+    background: hsl(var(--accent-blue) / 0.8);
+}
+
+.btn.equals {
+    background: hsl(var(--accent-green));
+    grid-row: span 2;
+    height: auto;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.btn.equals:hover {
+    background: hsl(var(--accent-green) / 0.8);
+}
+
+.btn.function {
+    background: hsl(var(--accent-orange));
+    font-size: 1rem;
+}
+
+.btn.function:hover {
+    background: hsl(var(--accent-orange) / 0.8);
+}
+
+.btn.clear {
+    background: hsl(var(--accent-red));
+    font-weight: 600;
+}
+
+.btn.clear:hover {
+    background: hsl(var(--accent-red) / 0.8);
+}
+
+.btn.memory {
+    background: hsl(142 76% 36% / 0.2);
+    border-color: hsl(var(--accent-green));
+    color: hsl(var(--accent-green));
+    font-size: 0.9rem;
+}
+
+.btn.memory:hover {
+    background: hsl(var(--accent-green) / 0.3);
+}
+
+.btn.decimal {
+    background: hsl(var(--primary-bg));
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.btn.zero {
+    grid-column: span 2;
+}
+
+.btn.history-toggle {
+    background: hsl(var(--secondary-bg));
+    font-size: 1.2rem;
+}
+
+.btn.history-toggle:hover {
+    background: hsl(var(--accent-blue) / 0.2);
+}
+
+/* Error State */
+.error {
+    color: hsl(var(--accent-red)) !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .calculator-container {
+        max-width: 100%;
+    }
+    
+    .calculator {
+        padding: 1rem;
+    }
+    
+    .button-grid {
+        gap: 0.5rem;
+    }
+    
+    .btn {
+        height: 45px;
+        font-size: 1rem;
+    }
+    
+    .current-operand {
+        font-size: 1.5rem;
+    }
+    
+    .history-panel {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        max-height: 100%;
+        border-radius: 0;
+        transform: translateY(100%);
+    }
+    
+    .history-panel.active {
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 0.5rem;
+    }
+    
+    .calculator {
+        padding: 0.75rem;
+    }
+    
+    .display {
+        padding: 1rem;
+        min-height: 70px;
+    }
+    
+    .current-operand {
+        font-size: 1.3rem;
+    }
+    
+    .btn {
+        height: 40px;
+        font-size: 0.9rem;
+    }
+    
+    .button-grid {
+        gap: 0.4rem;
+    }
+}
+
+/* Scrollbar Styling */
+.history-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.history-list::-webkit-scrollbar-track {
+    background: hsl(var(--primary-bg));
+    border-radius: 3px;
+}
+
+.history-list::-webkit-scrollbar-thumb {
+    background: hsl(var(--border-color));
+    border-radius: 3px;
+}
+
+.history-list::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--text-secondary));
+}

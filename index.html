@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Scientific Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="calculator-container">
+        <div class="calculator">
+            <!-- Display Section -->
+            <div class="display-section">
+                <div class="display">
+                    <div class="previous-operand" id="previousOperand"></div>
+                    <div class="current-operand" id="currentOperand">0</div>
+                </div>
+                <div class="memory-indicator" id="memoryIndicator">M</div>
+            </div>
+
+            <!-- History Panel -->
+            <div class="history-panel" id="historyPanel">
+                <div class="history-header">
+                    <h3>History</h3>
+                    <button class="clear-history-btn" id="clearHistoryBtn">Clear</button>
+                </div>
+                <div class="history-list" id="historyList">
+                    <div class="no-history">No calculations yet</div>
+                </div>
+            </div>
+
+            <!-- Button Grid -->
+            <div class="button-grid">
+                <!-- Row 1 - Memory and Special Functions -->
+                <button class="btn memory" data-action="memory-clear">MC</button>
+                <button class="btn memory" data-action="memory-recall">MR</button>
+                <button class="btn memory" data-action="memory-store">MS</button>
+                <button class="btn memory" data-action="memory-add">M+</button>
+                <button class="btn memory" data-action="memory-subtract">M-</button>
+
+                <!-- Row 2 - Scientific Functions -->
+                <button class="btn function" data-function="sin">sin</button>
+                <button class="btn function" data-function="cos">cos</button>
+                <button class="btn function" data-function="tan">tan</button>
+                <button class="btn function" data-function="log">log</button>
+                <button class="btn function" data-function="ln">ln</button>
+
+                <!-- Row 3 - More Functions -->
+                <button class="btn function" data-function="sqrt">√</button>
+                <button class="btn function" data-function="square">x²</button>
+                <button class="btn function" data-function="power">x^y</button>
+                <button class="btn function" data-function="factorial">x!</button>
+                <button class="btn function" data-function="pi">π</button>
+
+                <!-- Row 4 - Numbers and Operations -->
+                <button class="btn clear" data-action="all-clear">AC</button>
+                <button class="btn clear" data-action="clear">C</button>
+                <button class="btn operator" data-operator="/">÷</button>
+                <button class="btn operator" data-operator="*">×</button>
+                <button class="btn function" data-function="backspace">⌫</button>
+
+                <!-- Row 5 -->
+                <button class="btn number" data-number="7">7</button>
+                <button class="btn number" data-number="8">8</button>
+                <button class="btn number" data-number="9">9</button>
+                <button class="btn operator" data-operator="-">-</button>
+                <button class="btn function" data-function="parenthesis">()</button>
+
+                <!-- Row 6 -->
+                <button class="btn number" data-number="4">4</button>
+                <button class="btn number" data-number="5">5</button>
+                <button class="btn number" data-number="6">6</button>
+                <button class="btn operator" data-operator="+">+</button>
+                <button class="btn function" data-function="negate">±</button>
+
+                <!-- Row 7 -->
+                <button class="btn number" data-number="1">1</button>
+                <button class="btn number" data-number="2">2</button>
+                <button class="btn number" data-number="3">3</button>
+                <button class="btn equals" data-action="equals" rowspan="2">=</button>
+                <button class="btn function" data-function="e">e</button>
+
+                <!-- Row 8 -->
+                <button class="btn number zero" data-number="0">0</button>
+                <button class="btn decimal" data-action="decimal">.</button>
+                <button class="btn function" data-function="ans">Ans</button>
+                <button class="btn history-toggle" id="historyToggle">📊</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
