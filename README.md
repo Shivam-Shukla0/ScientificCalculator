@@ -6,7 +6,7 @@ A simple and elegant web-based scientific calculator built using **HTML**, **CSS
 
 ## 📸 Demo
 
-> Add a screenshot or screen recording here if you like.
+👉 [Click here to try the calculator live](https://shivam-shukla0.github.io/ScientificCalculator/)
 
 ---
 
@@ -18,7 +18,7 @@ A simple and elegant web-based scientific calculator built using **HTML**, **CSS
   - `π`, `√`, `x²`, `xʸ`
 - Real-time calculation
 - Responsive and clean UI
-- Keyboard input support *(optional)*
+- Light/dark theme ready (optional enhancement)
 
 ---
 
@@ -45,3 +45,8 @@ ScientificCalculator/
 1. **Clone the repo**
    ```bash
    git clone https://github.com/yourusername/ScientificCalculator.git
+
+2. **Navigate to the folder**
+   cd ScientificCalculator
+3. **Open index.html in any browser**
+   Or use the Live Server extension in VS Code   
