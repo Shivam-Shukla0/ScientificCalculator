@@ -8,12 +8,16 @@ class ScientificCalculator {
         this.history = JSON.parse(localStorage.getItem('calculatorHistory')) || [];
         this.lastAnswer = 0;
         this.parenthesesCount = 0;
+        this.angleMode = 'deg'; // 'deg' or 'rad'
+        this.theme = localStorage.getItem('calculatorTheme') || 'dark';
         
         this.initializeElements();
         this.attachEventListeners();
         this.updateDisplay();
         this.updateHistory();
         this.updateMemoryIndicator();
+        this.updateAngleMode();
+        this.setTheme(this.theme);
     }
 
     initializeElements() {
@@ -24,6 +28,9 @@ class ScientificCalculator {
         this.historyList = document.getElementById('historyList');
         this.historyToggle = document.getElementById('historyToggle');
         this.clearHistoryBtn = document.getElementById('clearHistoryBtn');
+        this.angleModeElement = document.getElementById('angleMode');
+        this.themeToggle = document.getElementById('themeToggle');
+        this.degRadToggle = document.getElementById('degRadToggle');
     }
 
     attachEventListeners() {
@@ -59,6 +66,11 @@ class ScientificCalculator {
         // Clear history
         this.clearHistoryBtn.addEventListener('click', () => {
             this.clearHistory();
+        });
+
+        // Theme toggle
+        this.themeToggle.addEventListener('click', () => {
+            this.toggleTheme();
         });
 
         // Click outside to close history
@@ -222,6 +234,23 @@ class ScientificCalculator {
             case 'tan':
                 this.currentOperand = String(Math.tan(this.toRadians(currentValue)));
                 break;
+            case 'asin':
+                if (currentValue < -1 || currentValue > 1) {
+                    this.showError('Invalid input for arcsin');
+                    return;
+                }
+                this.currentOperand = String(this.fromRadians(Math.asin(currentValue)));
+                break;
+            case 'acos':
+                if (currentValue < -1 || currentValue > 1) {
+                    this.showError('Invalid input for arccos');
+                    return;
+                }
+                this.currentOperand = String(this.fromRadians(Math.acos(currentValue)));
+                break;
+            case 'atan':
+                this.currentOperand = String(this.fromRadians(Math.atan(currentValue)));
+                break;
             case 'log':
                 if (currentValue <= 0) {
                     this.showError('Invalid input for logarithm');
@@ -274,6 +303,12 @@ class ScientificCalculator {
             case 'parenthesis':
                 this.handleParenthesis();
                 return;
+            case 'deg-rad':
+                this.toggleAngleMode();
+                return;
+            case 'percent':
+                this.currentOperand = String(currentValue / 100);
+                break;
         }
 
         this.waitingForOperand = true;
@@ -281,7 +316,11 @@ class ScientificCalculator {
     }
 
     toRadians(degrees) {
-        return degrees * (Math.PI / 180);
+        return this.angleMode === 'deg' ? degrees * (Math.PI / 180) : degrees;
+    }
+
+    fromRadians(radians) {
+        return this.angleMode === 'deg' ? radians * (180 / Math.PI) : radians;
     }
 
     factorial(n) {
@@ -481,6 +520,31 @@ class ScientificCalculator {
 
     saveHistory() {
         localStorage.setItem('calculatorHistory', JSON.stringify(this.history));
+    }
+
+    // Theme functions
+    toggleTheme() {
+        this.theme = this.theme === 'dark' ? 'light' : 'dark';
+        this.setTheme(this.theme);
+        localStorage.setItem('calculatorTheme', this.theme);
+    }
+
+    setTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        this.themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+    }
+
+    // Angle mode functions
+    toggleAngleMode() {
+        this.angleMode = this.angleMode === 'deg' ? 'rad' : 'deg';
+        this.updateAngleMode();
+    }
+
+    updateAngleMode() {
+        this.angleModeElement.textContent = this.angleMode.toUpperCase();
+        if (this.degRadToggle) {
+            this.degRadToggle.textContent = this.angleMode.toUpperCase();
+        }
     }
 
     // Display functions
