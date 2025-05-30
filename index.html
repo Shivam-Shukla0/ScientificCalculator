@@ -15,7 +15,11 @@
                     <div class="previous-operand" id="previousOperand"></div>
                     <div class="current-operand" id="currentOperand">0</div>
                 </div>
-                <div class="memory-indicator" id="memoryIndicator">M</div>
+                <div class="indicators">
+                    <div class="memory-indicator" id="memoryIndicator">M</div>
+                    <div class="angle-mode" id="angleMode">DEG</div>
+                    <div class="theme-toggle" id="themeToggle">🌙</div>
+                </div>
             </div>
 
             <!-- History Panel -->
@@ -42,45 +46,52 @@
                 <button class="btn function" data-function="sin">sin</button>
                 <button class="btn function" data-function="cos">cos</button>
                 <button class="btn function" data-function="tan">tan</button>
-                <button class="btn function" data-function="log">log</button>
-                <button class="btn function" data-function="ln">ln</button>
+                <button class="btn function" data-function="asin">sin⁻¹</button>
+                <button class="btn function" data-function="acos">cos⁻¹</button>
 
                 <!-- Row 3 - More Functions -->
+                <button class="btn function" data-function="atan">tan⁻¹</button>
+                <button class="btn function" data-function="log">log</button>
+                <button class="btn function" data-function="ln">ln</button>
+                <button class="btn function" data-function="deg-rad" id="degRadToggle">DEG</button>
                 <button class="btn function" data-function="sqrt">√</button>
+
+                <!-- Row 4 - More Functions -->
                 <button class="btn function" data-function="square">x²</button>
                 <button class="btn function" data-function="power">x^y</button>
                 <button class="btn function" data-function="factorial">x!</button>
                 <button class="btn function" data-function="pi">π</button>
+                <button class="btn function" data-function="e">e</button>
 
-                <!-- Row 4 - Numbers and Operations -->
+                <!-- Row 5 - Operations -->
                 <button class="btn clear" data-action="all-clear">AC</button>
                 <button class="btn clear" data-action="clear">C</button>
                 <button class="btn operator" data-operator="/">÷</button>
                 <button class="btn operator" data-operator="*">×</button>
                 <button class="btn function" data-function="backspace">⌫</button>
 
-                <!-- Row 5 -->
+                <!-- Row 6 - Numbers -->
                 <button class="btn number" data-number="7">7</button>
                 <button class="btn number" data-number="8">8</button>
                 <button class="btn number" data-number="9">9</button>
                 <button class="btn operator" data-operator="-">-</button>
                 <button class="btn function" data-function="parenthesis">()</button>
 
-                <!-- Row 6 -->
+                <!-- Row 7 -->
                 <button class="btn number" data-number="4">4</button>
                 <button class="btn number" data-number="5">5</button>
                 <button class="btn number" data-number="6">6</button>
                 <button class="btn operator" data-operator="+">+</button>
                 <button class="btn function" data-function="negate">±</button>
 
-                <!-- Row 7 -->
+                <!-- Row 8 -->
                 <button class="btn number" data-number="1">1</button>
                 <button class="btn number" data-number="2">2</button>
                 <button class="btn number" data-number="3">3</button>
                 <button class="btn equals" data-action="equals" rowspan="2">=</button>
-                <button class="btn function" data-function="e">e</button>
+                <button class="btn function" data-function="percent">%</button>
 
-                <!-- Row 8 -->
+                <!-- Row 9 -->
                 <button class="btn number zero" data-number="0">0</button>
                 <button class="btn decimal" data-action="decimal">.</button>
                 <button class="btn function" data-function="ans">Ans</button>
